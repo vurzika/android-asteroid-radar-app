@@ -34,7 +34,6 @@ class MainFragment : Fragment() {
         }
         binding.asteroidList.adapter = adapter
 
-
         // Data
         viewModel.asteroidList.observe(viewLifecycleOwner, { asteroidList ->
             adapter.submitList(asteroidList)
@@ -42,7 +41,7 @@ class MainFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
-        viewModel.loadAsteroidData()
+        viewModel.refreshAsteroidData()
 
         return binding.root
     }

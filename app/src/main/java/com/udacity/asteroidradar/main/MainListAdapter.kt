@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.databinding.AsteroidListItemBinding
 import com.udacity.asteroidradar.model.Asteroid
 
-//class MainListAdapter : ListAdapter<Asteroid, MainListAdapter.ViewHolder>(MainListDiffCallback()) {
 class MainListAdapter : ListAdapter<Asteroid, MainListAdapter.ViewHolder>(DiffCallback) {
 
     lateinit var onItemClickListener: ClickListener
