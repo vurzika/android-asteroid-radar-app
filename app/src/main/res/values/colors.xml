@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    <color name="colorPrimary">#010613</color>-->
+    <color name="colorPrimaryDark">#010613</color>
+    <color name="colorAccent">#FF8282</color>
+    <!--    <color name="app_background">#FFFFFF</color>-->
+    <color name="app_background">#010613</color>
+    <color name="default_text_color">#FFFFFF</color>
+    <color name="text_grey">#D2D2D2</color>
+    <color name="potentially_hazardous">#FF8282</color>
+
+    <color name="colorPrimary">#2e7d32</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryVariant">#004f04</color>
+
+    <color name="colorSecondary">#fe982a</color>
+    <color name="colorOnSecondary">#ffffff</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+</resources>
