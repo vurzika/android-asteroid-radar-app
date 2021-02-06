@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_normal"
+        android:background="@color/app_background"
         android:onClick="@{() -> clickListener.onClick(asteroid)}"
         android:orientation="horizontal">
 
@@ -38,7 +39,6 @@
                 android:text="@{asteroid.codename}"
                 android:textAppearance="?textAppearanceSubtitle1"
                 android:textColor="@color/colorOnPrimary"
-                android:textStyle="bold"
                 tools:text="68347(2001 KB67)" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@{asteroid.closeApproachDate}"
-                android:textAppearance="?textAppearanceSubtitle1"
+                android:textAppearance="?textAppearanceCaption"
                 android:textColor="@color/colorOnPrimary"
                 tools:text="68347(2001 KB67)" />
 

@@ -13,11 +13,19 @@
 
         <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
         <item name="android:colorBackground">@color/colorBackground</item>
+
+        <!-- Customizing Text Appearance -->
+        <item name="textAppearanceSubtitle1">@style/AppTheme.Subtitle1</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Customizing Text Appearance -->
+    <style name="AppTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
