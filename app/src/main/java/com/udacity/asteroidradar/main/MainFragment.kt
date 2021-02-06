@@ -42,6 +42,7 @@ class MainFragment : Fragment() {
         })
 
         viewModel.refreshAsteroidData()
+        viewModel.refreshPictureOfDay()
 
         return binding.root
     }

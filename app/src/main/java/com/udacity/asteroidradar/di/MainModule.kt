@@ -2,8 +2,11 @@ package com.udacity.asteroidradar.di
 
 import android.content.Context
 import androidx.room.Room
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.api.AsteroidApiService
+import com.udacity.asteroidradar.api.PictureOfTheDayApiService
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import dagger.Module
 import dagger.Provides
@@ -12,6 +15,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -50,5 +54,21 @@ object MainModule {
             .build()
 
         return retrofit.create(AsteroidApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providePictureOfDayApiService(): PictureOfTheDayApiService {
+
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .baseUrl(Constants.BASE_URL)
+            .build()
+
+        return retrofit.create(PictureOfTheDayApiService::class.java)
     }
 }

@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.model
 
 import com.udacity.asteroidradar.Constants.API_QUERY_DATE_FORMAT
 import com.udacity.asteroidradar.api.AsteroidApiService
+import com.udacity.asteroidradar.api.PictureOfTheDayApiService
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 @Singleton
 class AsteroidRepository @Inject constructor(
     private val database: AsteroidDatabase,
-    private val asteroidService: AsteroidApiService
+    private val asteroidService: AsteroidApiService,
+    private val pictureOfTheDayService: PictureOfTheDayApiService
 ) {
 
     companion object {
@@ -34,5 +36,10 @@ class AsteroidRepository @Inject constructor(
         database.asteroidDao().insertAll(asteroidList)
     }
 
+    suspend fun getPictureOfTheDay() = withContext(Dispatchers.IO) {
+        pictureOfTheDayService.getPictureOfTheDay()
+    }
+
     private fun getTodayAsString() = queryDateFormatter.format(LocalDate.now())
+
 }
