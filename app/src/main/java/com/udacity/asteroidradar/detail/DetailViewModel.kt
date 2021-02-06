@@ -1,12 +1,18 @@
 package com.udacity.asteroidradar.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.udacity.asteroidradar.model.Asteroid
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DetailViewModel(asteroid: Asteroid) : ViewModel() {
+@HiltViewModel
+class DetailViewModel @Inject constructor(
+    state: SavedStateHandle
+) : ViewModel() {
 
-    val selectedAsteroid: LiveData<Asteroid> = MutableLiveData(asteroid)
 
+    // getting navigation argument as LiveData from navigation arguments
+    val selectedAsteroid: LiveData<Asteroid> = state.getLiveData("selectedAsteroid")
 }
