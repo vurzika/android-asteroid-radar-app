@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -47,6 +48,15 @@ class MainFragment : Fragment() {
         })
 
         viewModel.refreshPictureOfDay()
+
+        // Setting Toolbar title
+        viewModel.asteroidsToDisplay.observe(viewLifecycleOwner, { displayedAsteroids ->
+            (activity as AppCompatActivity).supportActionBar?.title = when (displayedAsteroids) {
+                MainViewModel.AsteroidsToDisplay.TODAY -> getString(R.string.todays_asteroids_toolbar_title)
+                MainViewModel.AsteroidsToDisplay.WEEKLY -> getString(R.string.weeks_asteroids_toolbar_title)
+                else -> getString(R.string.saved_asteroids_toolbar_title)
+            }
+        })
 
         return binding.root
     }
