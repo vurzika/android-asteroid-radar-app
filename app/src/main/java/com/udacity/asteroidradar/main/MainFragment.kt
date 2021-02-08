@@ -1,7 +1,12 @@
 package com.udacity.asteroidradar.main
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -41,7 +46,6 @@ class MainFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
-        viewModel.refreshAsteroidData()
         viewModel.refreshPictureOfDay()
 
         return binding.root
@@ -54,6 +58,14 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_option_show_today -> viewModel.setAsteroidsToDisplay(MainViewModel.AsteroidsToDisplay.TODAY)
+            R.id.menu_option_show_weekly -> viewModel.setAsteroidsToDisplay(MainViewModel.AsteroidsToDisplay.WEEKLY)
+            R.id.menu_option_show_saved -> viewModel.setAsteroidsToDisplay(MainViewModel.AsteroidsToDisplay.SAVED)
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+
         return true
     }
 }

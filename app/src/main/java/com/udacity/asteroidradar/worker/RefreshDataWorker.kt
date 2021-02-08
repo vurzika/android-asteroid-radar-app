@@ -22,7 +22,7 @@ class RefreshDataWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         return try {
-            repository.refreshAsteroidList()
+            repository.refreshWeeklyAsteroidList()
             Result.success()
         } catch (error: Exception) {
             Result.failure()
