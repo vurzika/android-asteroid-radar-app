@@ -28,15 +28,23 @@ class MainViewModel @Inject constructor(
     val asteroidsToDisplay: LiveData<AsteroidsToDisplay>
         get() = _asteroidsToDisplay
 
+    // Loading indicator
+    private val _loadingIndicatorVisible = MutableLiveData(false)
+    val loadingIndicatorVisible: LiveData<Boolean>
+        get() = _loadingIndicatorVisible
+
     // Automatically updating List data when Asteroids to display Changes
     val asteroidList = Transformations.switchMap(asteroidsToDisplay) { asteroidsToDisplay ->
         when (asteroidsToDisplay) {
             AsteroidsToDisplay.TODAY -> {
                 viewModelScope.launch {
                     try {
+                        _loadingIndicatorVisible.value = true
                         asteroidRepository.refreshTodayAsteroidList()
-                    } catch (error: Error) {
+                    } catch (error: Exception) {
 
+                    } finally {
+                        _loadingIndicatorVisible.value = false
                     }
                 }
                 asteroidRepository.getTodayAsteroidList()
@@ -44,9 +52,12 @@ class MainViewModel @Inject constructor(
             AsteroidsToDisplay.WEEKLY -> {
                 viewModelScope.launch {
                     try {
+                        _loadingIndicatorVisible.value = true
                         asteroidRepository.refreshWeeklyAsteroidList()
-                    } catch (error: Error) {
+                    } catch (error: Exception) {
 
+                    } finally {
+                        _loadingIndicatorVisible.value = false
                     }
                 }
                 asteroidRepository.getWeeklyAsteroidList()
