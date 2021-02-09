@@ -59,6 +59,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@{asteroid.potentiallyHazardous ? @string/potentially_hazardous_asteroid_image : @string/not_hazardous_asteroid_image}"
             android:scaleType="centerCrop"
             app:statusIcon="@{asteroid.potentiallyHazardous}"
             tools:src="@tools:sample/avatars" />
