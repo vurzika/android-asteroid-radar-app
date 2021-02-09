@@ -62,6 +62,13 @@ class AsteroidRepository @Inject constructor(
             database.asteroidDao().insertAll(asteroidList)
         }
 
+
+    suspend fun deletePreviousDayAsteroids() {
+        withContext(Dispatchers.IO) {
+            database.asteroidDao().deleteAsteroidsUntilProvidedDate(getTodayAsString())
+        }
+    }
+
     // returns today's date formatted as string
     private fun getTodayAsString() = queryDateFormatter.format(LocalDate.now())
 
